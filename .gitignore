@@ -1,0 +1,11 @@
+*
+!*/
+!*.md
+!*.c
+!*.h
+!*.pm
+!*.pl
+!Makefile
+!README
+!.gitignore
+!*.png

@@ -5,3 +5,6 @@ http_client: http_client.c
 
 http_server: http_server.c 
 	gcc -Wall -o http_server http_server.c
+
+clean: 
+	rm http_client http_server

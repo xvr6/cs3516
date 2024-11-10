@@ -38,8 +38,17 @@ int main(int argc, char *argv[]) {
         argv++;  // shift arguments to treat server_url as argv[1] and port as argv[2]
     }
 
-    const char *server_url = argv[1];
+    char *server_url = argv[1];
     port = atoi(argv[2]);
+
+    // Split server_url into hostname and path
+    char *path = strchr(server_url, '/');
+    if (path) {
+        *path = '\0';  // Null-terminate the hostname part
+        path++;        // Move to the start of the path
+    } else {
+        path = "/";  // Default to root if no path is provided
+    }
 
     // Resolve server address
     server = gethostbyname(server_url);
@@ -81,7 +90,7 @@ int main(int argc, char *argv[]) {
 
     // Formulate HTTP GET request
     snprintf(request, sizeof(request),
-             "GET / HTTP/1.1\r\nHost: %s\r\nConnection: close\r\n\r\n", server_url);
+             "GET %s HTTP/1.1\r\nHost: %s\r\nConnection: close\r\n\r\n", path, server_url);
 
     // Send the HTTP GET request
     if (send(sock, request, strlen(request), 0) < 0) {
