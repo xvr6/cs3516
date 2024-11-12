@@ -1,4 +1,3 @@
-#include <arpa/inet.h>
 #include <netdb.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -25,7 +24,6 @@ int main(int argc, char *argv[]) {
     struct hostent *server;
     char request[BUFFER_SIZE], response[BUFFER_SIZE];
     struct timeval start, end;
-    long rtt = 0;
 
     // Argument parsing
     if (argc < 3 || argc > 4) {
@@ -84,7 +82,7 @@ int main(int argc, char *argv[]) {
 
     if (rtt_flag) {
         gettimeofday(&end, NULL);
-        rtt = calculate_rtt(start, end);
+        long rtt = calculate_rtt(start, end);
         printf("RTT: %ld ms\n", rtt);
     }
 
