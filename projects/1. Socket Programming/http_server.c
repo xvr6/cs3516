@@ -1,11 +1,12 @@
+#include <netdb.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
-#include <arpa/inet.h>
 #include <sys/socket.h>
+#include <sys/time.h>
+#include <unistd.h>
 
-#define BUFFER_SIZE 4096
+#define BUFFER_SIZE 1048576 // roughly 1MB
 #define DEFAULT_PORT 8888
 
 void handle_client(int client_sock);
