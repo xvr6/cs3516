@@ -10,4 +10,5 @@
 !.gitignore
 !*.png
 !*.pdf
+!*.txt
 /.vscode

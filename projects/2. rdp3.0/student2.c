@@ -26,7 +26,17 @@
  * and would be called by other procedures in the operating system.
  * All these routines are in layer 4.
  */
+
+
 #define TIME_INCR 1500
+
+#define DEBUG 0 // Define statement for debug prints
+
+#if DEBUG
+    #define DEBUG_PRINT(...) printf(__VA_ARGS__)
+#else
+    #define DEBUG_PRINT(...) 
+#endif
 
 typedef struct msg msg;
 typedef struct pkt pkt;
@@ -50,7 +60,7 @@ int A_wait;            // Flag for unacknowledged packet
 // Receiver (B-side) variables
 int B_expected; // Sequence number expected by B
 
-
+// Function to calculate the checksum of a packet
 int calculateChecksum(pkt* p) {
     char* data = p->payload;
     int acknum = p->acknum;
@@ -65,6 +75,7 @@ int calculateChecksum(pkt* p) {
     return checksum;
 }
 
+// Function to resend packets from the queue
 void resendPkt(){
     stopTimer(AEntity);
 
@@ -72,17 +83,20 @@ void resendPkt(){
     int max = pktqSize;
 
     for (int i = 0; i < max; i++){
-        printf("Resending packet with seqnum: %d\n", curPkt->packet.seqnum); // Debug print
-        tolayer3(AEntity, curPkt->packet);
+        if(!(curPkt->packet.seqnum < B_expected)){
+            DEBUG_PRINT("Resending packet with seqnum: %d\n", curPkt->packet.seqnum); // Debug print
+            tolayer3(AEntity, curPkt->packet);
+        }
         curPkt = curPkt->next;
     }
     
     startTimer(AEntity, TIME_INCR); 
 }
 
+// Function to update the packet queue by removing acknowledged packets
 void updatePktq(){
-    while(pktqHead != NULL && pktqHead->packet.seqnum < A_acknum){
-        printf("Removing packet with seqnum: %d from queue\n", pktqHead->packet.seqnum); // Debug print
+    while((pktqHead != NULL) && (pktqHead->packet.seqnum < A_acknum)){
+        DEBUG_PRINT("Removing packet with seqnum: %d from queue\n", pktqHead->packet.seqnum); // Debug print
         pktq* temp = pktqHead;
         pktqHead = pktqHead->next;
         --pktqSize;
@@ -90,6 +104,13 @@ void updatePktq(){
     }
     if (pktqHead == NULL) {
         pktqTail = NULL; // Ensure tail is also NULL when queue is empty
+    }
+    // Update A_acknum and A_wait after cleaning the queue
+    if (pktqHead != NULL) {
+        A_acknum = pktqHead->packet.seqnum;
+    } else {
+        A_acknum = A_seqnum;
+        A_wait = FALSE;
     }
 }
 
@@ -100,27 +121,28 @@ void updatePktq(){
  * of your protocol to insure that the data in such a message is delivered
  * in-order, and correctly, to the receiving side upper layer.
  */
+// Function to handle output from A-side
 void A_output(struct msg message) {
-    //make packet
+    // Create packet
     pkt pktToSend;
     memcpy(pktToSend.payload, message.data, sizeof(message.data));
     pktToSend.seqnum = A_seqnum++; 
     pktToSend.checksum = calculateChecksum(&pktToSend);
 
-    // make entry and add to queue
+    // Create entry and add to queue
     pktq* pktqEntry = (pktq*) malloc(sizeof(pktq));
     pktqEntry->packet = pktToSend;
     pktqEntry->next = NULL; // Initialize next pointer to NULL
 
-    if (pktqHead == NULL){ // if queue hasn't been initalized
+    if (pktqHead == NULL){ // If queue hasn't been initialized
         pktqHead = pktqEntry; 
-    } else { // ensure new entry is pointed to
+    } else { // Ensure new entry is pointed to
         pktqTail->next = pktqEntry;
     }
 
     ++pktqSize;
-    pktqTail = pktqEntry; // add new entry to tail.
-    tolayer3(AEntity, pktToSend); //transmit to B
+    pktqTail = pktqEntry; // Add new entry to tail
+    tolayer3(AEntity, pktToSend); // Transmit to B
     startTimer(AEntity, TIME_INCR);
 
     A_wait = TRUE;
@@ -139,8 +161,9 @@ void B_output(struct msg message) {  // not needed
  * of a tolayer3() being done by a B-side procedure) arrives at the A-side.
  * packet is the (possibly corrupted) packet sent from the B-side.
  */
-void A_input(struct pkt packet) {  // called for ack
-    // corruption
+// Function to handle input at A-side (ACKs from B-side)
+void A_input(struct pkt packet) {
+    // Check for corruption
     int recSum = calculateChecksum(&packet);
     if (recSum != packet.checksum){
         printf("A_input: corrupted ACK received\n");
@@ -148,7 +171,7 @@ void A_input(struct pkt packet) {  // called for ack
         return;
     }
 
-    // unwanted ACK
+    // Check for unwanted ACK
     if (!A_wait || packet.acknum != A_acknum) { 
         printf("A_input: unexpected ACK received\n");
         resendPkt();
@@ -157,7 +180,7 @@ void A_input(struct pkt packet) {  // called for ack
 
     stopTimer(AEntity);
     A_acknum = packet.acknum;
-    printf("A_input: ACK received for seqnum: %d\n", A_acknum); // Debug print
+    DEBUG_PRINT("A_input: ACK received for seqnum: %d\n", A_acknum); // Debug print
     updatePktq();
 
     if(pktqSize == 0) A_wait = FALSE; // Corrected condition
@@ -169,14 +192,16 @@ void A_input(struct pkt packet) {  // called for ack
  * routine to control the retransmission of packets. See starttimer()
  * and stoptimer() in the writeup for how the timer is started and stopped.
  */
+// Function to handle timer interrupt at A-side
 void A_timerinterrupt() {
-    if(!A_wait) return; //not waiting for ACK, ignore.
-    printf("A_timerinterrupt: waiting for correct ACK\n");
+    if(!A_wait) return; // Not waiting for ACK, ignore
+    DEBUG_PRINT("A_timerinterrupt: waiting for correct ACK\n");
     resendPkt();
 }
 
 /* The following routine will be called once (only) before any other    */
 /* entity A routines are called. You can use it to do any initialization */
+// Initialization function for A-side
 void A_init() {
     A_seqnum = 0;
     A_acknum = 0;
@@ -196,31 +221,32 @@ void A_init() {
  * of a tolayer3() being done by a A-side procedure) arrives at the B-side.
  * packet is the (possibly corrupted) packet sent from the A-side.
  */
+// Function to handle input at B-side (packets from A-side)
 void B_input(struct pkt packet) {
-    // corruption handling
+    // Check for corruption
     int receivedSum = calculateChecksum(&packet);
     if (packet.checksum != receivedSum) {
-        printf("B_input: pkt %d corrupted (rec: %d exp: %d)\n", packet.seqnum, receivedSum, packet.checksum);
+        DEBUG_PRINT("B_input: pkt %d corrupted (rec: %d exp: %d)\n", packet.seqnum, receivedSum, packet.checksum);
         return;
     }
 
-    // out of order/loss
+    // Check for out of order/loss
     if (packet.seqnum != B_expected) {
-        printf("B_input: pkt %d received, expected pkt %d\n", packet.seqnum, B_expected);
+        DEBUG_PRINT("B_input: pkt %d received, expected pkt %d\n", packet.seqnum, B_expected);
         return;
     }
 
     // Received correct, uncorrupted packet
-    printf("B_input: Correct packet %d received\n", packet.seqnum); // Debug print
+    DEBUG_PRINT("B_input: Correct packet %d received\n", packet.seqnum); // Debug print
     ++B_expected;
 
-    // send ACK
+    // Send ACK
     pkt ACK;
     ACK.acknum = packet.seqnum;
     ACK.checksum = calculateChecksum(&ACK);
     tolayer3(BEntity, ACK);
 
-    //'transmit' data
+    // 'Transmit' data
     msg msgConfirm;
     memcpy(msgConfirm.data, packet.payload, sizeof(packet.payload));
     tolayer5(BEntity, msgConfirm);
@@ -240,6 +266,7 @@ void B_timerinterrupt() { // Not bidirectional, not needed
  * The following routine will be called once (only) before any other
  * entity B routines are called. You can use it to do any initialization
  */
+// Initialization function for B-side
 void B_init() {
     B_expected = 0;
 }

@@ -1,0 +1,386 @@
+~/cs3516/projects/2. rdp3.0$ ./p2
+-----  Network Simulator Version    2.3 -------- 
+
+Enter the number of messages to simulate: 100
+Packet loss probability [enter number between 0.0 and 1.0]: .1
+Packet corruption probability [0.0 for no corruption]: .2
+Packet out-of-order probability [0.0 for no out-of-order]: .2
+Average time between messages from sender's layer5 [ > 0.0]: 1000
+Enter Level of tracing desired: 0
+Do you want actions randomized: (1 = yes, 0 = no)? 1
+Do you want Bidirectional: (1 = yes, 0 = no)? 0
+Input parameters:
+Number of Messages = 100  Lost Packet Prob. =   0.100
+Corrupt Packet Prob. =   0.200  Out Of Order Prob. =   0.200
+Ave. time between messages =  1000.00  Trace level = 0
+Randomize = 1  Bi-directional = 0
+
+A:     481.9368,  Layer 5 to 4  Message = !fEVhy->Pbs'2J3m~2DU
+B:     487.1269,  Layer 4 to 5  Message = !fEVhy->Pbs'2J3m~2DU
+A_input: corrupted ACK received
+A:    2392.9761,  Layer 5 to 4  Message = ##i.Qt9]!Eh-Ps8[~Dg,
+B:    2404.3179,  Layer 4 to 5  Message = ##i.Qt9]!Eh-Ps8[~Dg,
+A_input: unexpected ACK received
+A:    3905.9893,  Layer 5 to 4  Message = $X$d:oFzQ(]3h>sJ~U,a
+B:    3915.9194,  Layer 4 to 5  Message = $X$d:oFzQ(]3h>sJ~U,a
+A_input: unexpected ACK received
+A:    5902.8634,  Layer 5 to 4  Message = %kS%$jR:#iQ9!hP8~gO7
+B:    5907.8437,  Layer 4 to 5  Message = %kS%$jR:#iQ9!hP8~gO7
+A_input: corrupted ACK received
+A:    6068.4705,  Layer 5 to 4  Message = &}wq&e_XRLF?93-'~xrl
+B:    6082.0461,  Layer 4 to 5  Message = &}wq&e_XRLF?93-'~xrl
+A_input: unexpected ACK received
+A:    7983.8063,  Layer 5 to 4  Message = '2=IT'kv$x:FQ]hs~,7C
+B:    7985.1229,  Layer 4 to 5  Message = '2=IT'kv$x:FQ]hs~,7C
+A_input: unexpected ACK received
+A:    9734.7064,  Layer 5 to 4  Message = (Eb~=Z(6SpxLi(Eb~=Zw
+B:    9740.0972,  Layer 4 to 5  Message = (Eb~=Z(6SpxLi(Eb~=Zw
+A_input: unexpected ACK received
+A:   10686.1670,  Layer 5 to 4  Message = dW(V'U&)%S$R2Q!P~O}N
+B:   11276.9818,  Layer 4 to 5  Message = dW(V'U&)%S$R2Q!P~O}N
+A:   12165.9917,  Layer 5 to 4  Message = *jL.nP2r*6vX:z]>~aC%
+B:   12169.6378,  Layer 4 to 5  Message = *jL.nP2r*6vX:z]>~aC%
+A_input: unexpected ACK received
+A:   13126.4089,  Layer 5 to 4  Message = +fpdWK>2&+k_RF3-~rfY
+B:   13148.5887,  Layer 4 to 5  Message = +fpdWK>2&+k_RF3-~rfY
+A_input: corrupted ACK received
+A:   14398.6997,  Layer 5 to 4  Message = ,16;AFKPUZ,ejoty~&+0
+B:   14671.9500,  Layer 4 to 5  Message = ,16;AFKPUZ,ejoty~&+0
+A_input: unexpected ACK received
+A:   15408.6430,  Layer 5 to 4  Message = -DZq*AWn'=T-$:Qh~7Ne
+B:   15427.0722,  Layer 4 to 5  Message = -DZq*AWn'=T-$:Qh~7Ne
+A_input: unexpected ACK received
+A:   15705.4467,  Layer 5 to 4  Message = .V~Iq;d.V~Iq.d.V~Iq;
+B:   15708.4576,  Layer 4 to 5  Message = .V~Iq;d.V~Iq.d.V~Iq;
+A_input: unexpected ACK received
+A:   16614.0820,  Layer 5 to 4  Message = xiE~Z6pL(b=wSxiE~Z6p
+B:   16632.6155,  Layer 4 to 5  Message = xiE~Z6pL(b=wSxiE~Z6p
+A_input: corrupted ACK received
+A:   17332.6718,  Layer 5 to 4  Message = d{iVD1|jWE2}2X03~lYG
+B:   17348.1451,  Layer 4 to 5  Message = d{iVD1|jWE2}2X03~lYG
+A_input: unexpected ACK received
+A:   18473.6159,  Layer 5 to 4  Message = 10x.-,+*)('&%$#1~}|{
+B:   18489.9519,  Layer 4 to 5  Message = 10x.-,+*)('&%$#1~}|{
+A_input: unexpected ACK received
+A:   19830.1076,  Layer 5 to 4  Message = 2CSdt'7HXiy,<M^n21BR
+B:   19831.6862,  Layer 4 to 5  Message = 2CSdt'7HXiy,<M^n21BR
+A_input: unexpected ACK received
+A:   21780.3633,  Layer 5 to 4  Message = 3Uw;^!Df*Ln2Tv:]~3e)
+B:   22843.2835,  Layer 4 to 5  Message = 3Uw;^!Df*Ln2Tv:]~3e)
+A_input: unexpected ACK received
+A:   23332.4063,  Layer 5 to 4  Message = 4f=qGzP&Yxc8lB3K~T4^
+B:   23337.1568,  Layer 4 to 5  Message = 4f=qGzP&Yxc8lB3K~T4^
+A_input: corrupted ACK received
+A:   25217.6325,  Layer 5 to 4  Message = 5zbI0u]D+pW>&kR9~fM5
+B:   25220.5158,  Layer 4 to 5  Message = 5zbI0u]D+pW>&kR9~fM5
+A_input: corrupted ACK received
+A:   25484.5188,  Layer 5 to 4  Message = 6x(~wpibZSLE=6x(~wpi
+B:   26737.3432,  Layer 4 to 5  Message = 6x(~wpibZSLE=6x(~wpi
+A_input: unexpected ACK received
+A:   27135.6459,  Layer 5 to 4  Message = d7LVaku!,6AK2`jt~+5?
+B:   28243.6904,  Layer 4 to 5  Message = d7LVaku!,6AK2`jt~+5?
+A_input: unexpected ACK received
+A:   28848.8661,  Layer 5 to 4  Message = 8T8.Jf$?[w5Qm+Gc~<Xt
+B:   28860.1807,  Layer 4 to 5  Message = 8T8.Jf$?[w5Qm+Gc~<Xt
+A_input: unexpected ACK received
+A:   30341.7807,  Layer 5 to 4  Message = 9g693a0^-Z*W'T$Q~N{K
+B:   30349.2505,  Layer 4 to 5  Message = 9g693a0^-Z*W'T$Q~N{K
+A_input: unexpected ACK received
+A:   32104.0659,  Layer 5 to 4  Message = :yZ;:[<{]=|^>}_?~`A!
+B:   32107.2898,  Layer 4 to 5  Message = :yZ;:[<{]=|^>}_?~`A!
+A_input: unexpected ACK received
+A:   32262.0948,  Layer 5 to 4  Message = ;.~qd;I;.~qdVI;.~qdV
+B:   32266.3103,  Layer 4 to 5  Message = ;.~qd;I;.~qdVI;.~qdV
+A_input: unexpected ACK received
+A:   33976.0232,  Layer 5 to 4  Message = <AEIMQ<Y^bfjnrvz~%)-
+B:   33984.6910,  Layer 4 to 5  Message = <AEIMQ<Y^bfjnrvz~%)-
+A_input: unexpected ACK received
+A:   35827.9736,  Layer 5 to 4  Message = =fi~6Lb=xEZp(=3i~6Lb
+A:   35915.2252,  Layer 5 to 4  Message = dfxV}Gn7>(Ov2g0W~Ho8
+A:   37093.1870,  Layer 5 to 4  Message = ?xS.gBzU0?D|W2kF~Y4m
+A:   38336.6446,  Layer 5 to 4  Message = A-wdP<)s`LA%o[H4~kWD
+B:   38512.8825,  Layer 4 to 5  Message = =fi~6Lb=xEZp(=3i~6Lb
+B:   38517.4767,  Layer 4 to 5  Message = dfxV}Gn7>(Ov2g0W~Ho8
+B:   38527.8419,  Layer 4 to 5  Message = ?xS.gBzU0?D|W2kF~Y4m
+A_input: unexpected ACK received
+A_input: unexpected ACK received
+A_input: unexpected ACK received
+B:   38543.7367,  Layer 4 to 5  Message = A-wdP<)s`LA%o[H4~kWD
+A_input: unexpected ACK received
+A:   39139.8410,  Layer 5 to 4  Message = B?=;97531x-B)'%#~|zx
+B:   39170.1246,  Layer 4 to 5  Message = B?=;97531x-B)'%#~|zx
+
+Printing the contents of the Simulation Event Q
+Event Time = 40073.127 A: Timer    
+Event Time = 40203.549 A: LAYER 5  
+
+A_input: unexpected ACK received
+
+Printing the contents of the Simulation Event Q
+Event Time = 40693.105 A: Timer    
+
+A:   40203.5491,  Layer 5 to 4  Message = CRbq#2BQap!1CP`o~0?O
+
+Printing the contents of the Simulation Event Q
+Event Time = 40693.105 A: Timer    
+Event Time = 42147.894 A: LAYER 5  
+
+B:   40233.2522,  Layer 4 to 5  Message = CRbq#2BQap!1CP`o~0?O
+A_input: unexpected ACK received
+A:   42147.8943,  Layer 5 to 4  Message = De(Ij-No2St7XD<^~Bc&
+A:   43270.4731,  Layer 5 to 4  Message = EwL~S(Zxb6i=pEEL~S(Z
+B:   43273.4949,  Layer 4 to 5  Message = De(Ij-No2St7XD<^~Bc&
+B:   43295.7884,  Layer 4 to 5  Message = EwL~S(Zxb6i=pEEL~S(Z
+A_input: unexpected ACK received
+A_input: unexpected ACK received
+A:   44367.8133,  Layer 5 to 4  Message = d,pV<#gM3w^D2nTF~eK1
+B:   44377.3362,  Layer 4 to 5  Message = d,pV<#gM3w^D2nTF~eK1
+A_input: corrupted ACK received
+A:   44885.0595,  Layer 5 to 4  Message = Gf6.&{skcZRJB93)Gvnf
+B:   44909.5269,  Layer 4 to 5  Message = Gf6.&{skcZRJB93)Gvnf
+A:   46484.7167,  Layer 5 to 4  Message = HQZdmv!+4=GPYclu~H3<
+B:   46498.8385,  Layer 4 to 5  Message = HQZdmv!+4=GPYclu~H3<
+A_input: unexpected ACK received
+A:   48224.3786,  Layer 5 to 4  Message = Id~;Vq.Id~;Vq.Id~;Iq
+B:   48236.2436,  Layer 4 to 5  Message = Id~;Vq.Id~;Vq.Id~;Iq
+A_input: unexpected ACK received
+A:   49086.8092,  Layer 5 to 4  Message = JvEq?l:g5b0]+W&R~MyJ
+A:   50188.0260,  Layer 5 to 4  Message = K+iI)gG'eE%cC#aA~_>|
+A:   50761.8386,  Layer 5 to 4  Message = LLx~pbSE6(wiZL=x~pbS
+A:   50916.0961,  Layer 5 to 4  Message = dPMVY]`cfilo2ux{~$'*
+A:   51392.7483,  Layer 5 to 4  Message = NcwNCWl#7Lau,AUj~5J_
+A:   53142.3815,  Layer 5 to 4  Message = Ou=dORxAgxU{Dj2X~Gm5
+B:   54248.8486,  Layer 4 to 5  Message = JvEq?l:g5b0]+W&R~MyJ
+A:   54906.7653,  Layer 5 to 4  Message = Pfb;sP'_8pJ$[53G~X2j
+A:   55117.2638,  Layer 5 to 4  Message = Q<(q]HQ|hS>*s_J5~jUA
+B:   55763.3115,  Layer 4 to 5  Message = K+iI)gG'eE%cC#aA~_>|
+B:   55782.6215,  Layer 4 to 5  Message = LLx~pbSE6(wiZL=x~pbS
+A_input: unexpected ACK received
+A_input: corrupted ACK received
+B:   55805.2653,  Layer 4 to 5  Message = dPMVY]`cfilo2ux{~$'*
+A_input: corrupted ACK received
+A:   55843.3450,  Layer 5 to 4  Message = ROLIFC?R9630-*'$~{xu
+B:   55876.0527,  Layer 4 to 5  Message = NcwNCWl#7Lau,AUj~5J_
+A_input: unexpected ACK received
+B:   55906.8322,  Layer 4 to 5  Message = Ou=dORxAgxU{Dj2X~Gm5
+A_input: unexpected ACK received
+B:   55921.3610,  Layer 4 to 5  Message = Pfb;sP'_8pJ$[53G~X2j
+B:   55989.4985,  Layer 4 to 5  Message = Q<(q]HQ|hS>*s_J5~jUA
+A_input: unexpected ACK received
+B:   56032.3879,  Layer 4 to 5  Message = ROLIFC?R9630-*'$~{xu
+A_input: corrupted ACK received
+A:   56435.9251,  Layer 5 to 4  Message = Sbp~x=LZSw(6ESbp~x=L
+B:   56441.4512,  Layer 4 to 5  Message = Sbp~x=LZSw(6ESbp~x=L
+A_input: unexpected ACK received
+A:   57272.3174,  Layer 5 to 4  Message = dt6Vv8Xx:Tz<2|>_~Aa#
+B:   57273.3646,  Layer 4 to 5  Message = dt6Vv8Xx:Tz<2|>_~Aa#
+A_input: corrupted ACK received
+A:   57667.8593,  Layer 5 to 4  Message = U)Z.`3e8j=UCtHyM~R&W
+A:   58627.4522,  Layer 5 to 4  Message = V;~dI.qV;~dV.qV;~dI.
+A:   58833.4615,  Layer 5 to 4  Message = WNE;2)}tkbXOW<3*~ulc
+A:   60155.7655,  Layer 5 to 4  Message = Xaiqy$,4<EMU^Xnv~)19
+B:   60306.1958,  Layer 4 to 5  Message = U)Z.`3e8j=UCtHyM~R&W
+A_input: unexpected ACK received
+B:   60325.9246,  Layer 4 to 5  Message = V;~dI.qV;~dV.qV;~dI.
+A_input: corrupted ACK received
+B:   60340.7106,  Layer 4 to 5  Message = WNE;2)}tkbXOW<3*~ulc
+A_input: unexpected ACK received
+B:   60370.9934,  Layer 4 to 5  Message = Xaiqy$,4<EMU^Xnv~)19
+A_input: corrupted ACK received
+A:   62029.9643,  Layer 5 to 4  Message = YfxIc|8Rl(B[u1Ye~:Tn
+B:   62038.7997,  Layer 4 to 5  Message = YfxIc|8Rl(B[u1Ye~:Tn
+A_input: corrupted ACK received
+A:   63206.3780,  Layer 5 to 4  Message = Z(S~LwEp=i6bxZ(Z~LwE
+B:   63571.9404,  Layer 4 to 5  Message = Z(S~LwEp=i6bxZ(Z~LwE
+A_input: unexpected ACK received
+A:   64423.0009,  Layer 5 to 4  Message = d:wV5rQ0mL+h2&cB[^<y
+A:   64813.9943,  Layer 5 to 4  Message = ]M=.|m^N>x}n_O?0~]`P
+B:   65097.8706,  Layer 4 to 5  Message = d:wV5rQ0mL+h2&cB[^<y
+A:   65802.7754,  Layer 5 to 4  Message = ^`bdfhjlnprtvxz|~#^'
+B:   66576.3794,  Layer 4 to 5  Message = ]M=.|m^N>x}n_O?0~]`P
+B:   66585.2197,  Layer 4 to 5  Message = ^`bdfhjlnprtvxz|~#^'
+A_input: unexpected ACK received
+A_input: unexpected ACK received
+A:   67674.1475,  Layer 5 to 4  Message = _r(;Ocv,?Sgz0DWk~4H_
+B:   67675.5072,  Layer 4 to 5  Message = _r(;Ocv,?Sgz0DWk~4H_
+A_input: unexpected ACK received
+A:   69104.1136,  Layer 5 to 4  Message = `'Lq8^%Jo6[#Hm4Y~Fk2
+B:   69114.7832,  Layer 4 to 5  Message = `'Lq8^%Jo6[#Hm4Y~Fk2
+A_input: unexpected ACK received
+A:   70636.0357,  Layer 5 to 4  Message = aapI!X1hAwP)`8oH~W0g
+B:   70648.3868,  Layer 4 to 5  Message = aapI!X1hAwP)`8oH~W0g
+A_input: unexpected ACK received
+A:   72206.8735,  Layer 5 to 4  Message = bLb~iS=(pZExwbL6~iS=
+B:   72229.6963,  Layer 4 to 5  Message = bLb~iS=(pZExwbL6~iS=
+A_input: unexpected ACK received
+A:   73103.6554,  Layer 5 to 4  Message = dfZcRNJFB=952-3%~zvr
+B:   73113.5901,  Layer 4 to 5  Message = dfZcRNJFB=952-3%~zvr
+A_input: corrupted ACK received
+A:   74750.7762,  Layer 5 to 4  Message = dq~.dIVdq~.;IVdq~.;I
+B:   74767.4801,  Layer 4 to 5  Message = dq~.dIVdq~.;IVdq~.;I
+
+Printing the contents of the Simulation Event Q
+Event Time = 75120.937 A: LAYER 5  
+Event Time = 76115.772 A: Timer    
+
+A_input: unexpected ACK received
+
+Printing the contents of the Simulation Event Q
+Event Time = 76296.605 A: Timer    
+
+A:   75120.9373,  Layer 5 to 4  Message = e&Ed%ec$Cb#Ba!A`~?_}
+
+Printing the contents of the Simulation Event Q
+Event Time = 75904.841 A: LAYER 5  
+Event Time = 76296.605 A: Timer    
+
+B:   75150.4009,  Layer 4 to 5  Message = e&Ed%ec$Cb#Ba!A`~?_}
+A_input: unexpected ACK received
+A:   75904.8413,  Layer 5 to 4  Message = f8i;l>fBrEuHxK{N~Q$T
+B:   76671.3143,  Layer 4 to 5  Message = f8i;l>fBrEuHxK{N~Q$T
+A:   77396.7228,  Layer 5 to 4  Message = gKxqU9{gD(jN2tX<~cG+
+B:   77411.4313,  Layer 4 to 5  Message = gKxqU9{gD(jN2tX<~cG+
+A_input: unexpected ACK received
+A:   79165.0059,  Layer 5 to 4  Message = h^SI>4*}hi_TJ?5+~tj`
+A:   79844.8504,  Layer 5 to 4  Message = ipw~(x6=EiSZbipw~(x6
+B:   80452.3228,  Layer 4 to 5  Message = h^SI>4*}hi_TJ?5+~tj`
+A_input: unexpected ACK received
+B:   80493.8237,  Layer 4 to 5  Message = ipw~(x6=EiSZbipw~(x6
+A_input: unexpected ACK received
+A:   81174.9357,  Layer 5 to 4  Message = d%=Vo*C[txja24Mf~9Rk
+B:   82017.0153,  Layer 4 to 5  Message = d%=Vo*C[txja24Mf~9Rk
+A:   82030.3013,  Layer 5 to 4  Message = k7b.X%OyFp<k3^*T~KuB
+A:   82235.2895,  Layer 5 to 4  Message = lf(dB}[9uS1ml)3C~]:v
+A:   83766.8306,  Layer 5 to 4  Message = m]L;+xhWG6&scmB1~n^M
+A:   84168.9704,  Layer 5 to 4  Message = nopqrstuvwxyz{n}~!#$
+B:   85025.2686,  Layer 4 to 5  Message = k7b.X%OyFp<k3^*T~KuB
+A:   85176.8886,  Layer 5 to 4  Message = o$6I[n#5HZm!4GYo~3FX
+A:   85865.4133,  Layer 5 to 4  Message = p6Z~EixSw=b(Lp6ZpEix
+A:   86755.3638,  Layer 5 to 4  Message = dI~V.d;qI~V.2;qI~q.d
+A:   87191.9266,  Layer 5 to 4  Message = r[E.u_H1xbK4{eN7~hr:
+B:   88024.5392,  Layer 4 to 5  Message = lf(dB}[9uS1ml)3C~]:v
+B:   88028.8977,  Layer 4 to 5  Message = m]L;+xhWG6&scmB1~n^M
+A_input: unexpected ACK received
+B:   88052.7182,  Layer 4 to 5  Message = nopqrstuvwxyz{n}~!#$
+A_input: unexpected ACK received
+A_input: unexpected ACK received
+B:   88130.1795,  Layer 4 to 5  Message = o$6I[n#5HZm!4GYo~3FX
+A_input: corrupted ACK received
+B:   88195.3725,  Layer 4 to 5  Message = p6Z~EixSw=b(Lp6ZpEix
+A_input: corrupted ACK received
+A:   89123.0312,  Layer 5 to 4  Message = snid_YTOJE?:50+&~yts
+A:   91090.9113,  Layer 5 to 4  Message = t#x;HTamy(4AMYfr~-9F
+A:   91239.0395,  Layer 5 to 4  Message = uuSq1Om-Ki)Ge%3a~>]z
+B:   91246.7088,  Layer 4 to 5  Message = dI~V.d;qI~V.2;qI~q.d
+A_input: unexpected ACK received
+B:   91263.2262,  Layer 4 to 5  Message = r[E.u_H1xbK4{eN7~hr:
+A_input: corrupted ACK received
+B:   91290.5722,  Layer 4 to 5  Message = snid_YTOJE?:50+&~yts
+B:   91298.1979,  Layer 4 to 5  Message = t#x;HTamy(4AMYfr~-9F
+A_input: unexpected ACK received
+A_input: unexpected ACK received
+B:   91314.9090,  Layer 4 to 5  Message = uuSq1Om-Ki)Ge%3a~>]z
+A_input: unexpected ACK received
+A:   91568.7585,  Layer 5 to 4  Message = vHvIxJyKzL{M|N}O~P!Q
+B:   91585.2349,  Layer 4 to 5  Message = vHvIxJyKzL{M|N}O~P!Q
+A_input: unexpected ACK received
+A:   93108.4591,  Layer 5 to 4  Message = wZ=wbE(iLxpS6wZ=~bE(
+B:   93114.7524,  Layer 4 to 5  Message = wZ=wbE(iLxpS6wZ=~bE(
+A_input: unexpected ACK received
+A:   94540.6547,  Layer 5 to 4  Message = dmbVx?4){peY2C7,~sh]
+B:   94544.0396,  Layer 4 to 5  Message = dmbVx?4){peY2C7,~sh]
+A_input: unexpected ACK received
+A:   94803.6329,  Layer 5 to 4  Message = y!(.4yAGMSY`flrx~'-3
+B:   94806.2301,  Layer 4 to 5  Message = y!(.4yAGMSY`flrx~'-3
+A_input: unexpected ACK received
+A:   96196.9073,  Layer 5 to 4  Message = z4Ld{5ze|6Nf}7Og~8Ph
+B:   96204.6871,  Layer 4 to 5  Message = z4Ld{5ze|6Nf}7Og~8Ph
+A_input: corrupted ACK received
+A:   97931.6219,  Layer 5 to 4  Message = {Gp;e0Y{NwCl7a,U~Js>
+A:   98014.8052,  Layer 5 to 4  Message = |Y6qN+fC|Z7rO,gD~[8s
+A:   98704.5394,  Layer 5 to 4  Message = }lZI7&raO},xgUD2~m[J
+B:   99223.2315,  Layer 4 to 5  Message = {Gp;e0Y{NwCl7a,U~Js>
+A_input: unexpected ACK received
+B:   99236.0758,  Layer 4 to 5  Message = |Y6qN+fC|Z7rO,gD~[8s
+B:   99246.2899,  Layer 4 to 5  Message = }lZI7&raO},xgUD2~m[J
+A_input: corrupted ACK received
+A_input: corrupted ACK received
+A:  100243.1277,  Layer 5 to 4  Message = ~fDUgx,=Oa~&7I3l}1CT
+B:  100253.7163,  Layer 4 to 5  Message = ~fDUgx,=Oa~&7I3l}1CT
+A:  101518.1883,  Layer 5 to 4  Message = !3EVhy->Pbs'2J[m~2DU
+B:  102265.9051,  Layer 4 to 5  Message = !3EVhy->Pbs'2J[m~2DU
+A_input: unexpected ACK received
+A:  103238.5067,  Layer 5 to 4  Message = ##i.Qt9]!Eh-Ps8[~Dg,
+B:  103248.7372,  Layer 4 to 5  Message = ##i.Qt9]!Eh-Ps8[~Dg,
+A_input: unexpected ACK received
+A:  105025.0109,  Layer 5 to 4  Message = $X$d:oFzQ(]3h>sJ~U,a
+B:  105033.9441,  Layer 4 to 5  Message = $X$d:oFzQ(]3h>sJ~U,a
+A_input: unexpected ACK received
+A:  106306.0810,  Layer 5 to 4  Message = %kS%$jR:#iQ9!hP8~gO7
+B:  106315.4995,  Layer 4 to 5  Message = %kS%$jR:#iQ9!hP8~gO7
+A_input: unexpected ACK received
+A:  106515.4911,  Layer 5 to 4  Message = &}wq&e_XRLF?93-'~xrl
+B:  106545.0220,  Layer 4 to 5  Message = &}wq&e_XRLF?93-'~xrl
+A_input: unexpected ACK received
+A:  108312.5146,  Layer 5 to 4  Message = '2=IT'kv$x:FQ]hs~,7C
+B:  108319.0743,  Layer 4 to 5  Message = '2=IT'kv$x:FQ]hs~,7C
+A_input: unexpected ACK received
+A:  109279.6376,  Layer 5 to 4  Message = (Eb~=Z(6SpxLi(Eb~=Zw
+B:  109283.5705,  Layer 4 to 5  Message = (Eb~=Z(6SpxLi(Eb~=Zw
+
+Printing the contents of the Simulation Event Q
+Event Time = 109830.931 A: Timer    
+Event Time = 110222.262 A: LAYER 5  
+
+A_input: unexpected ACK received
+
+Printing the contents of the Simulation Event Q
+Event Time = 110792.823 A: Timer    
+
+A:  110222.2622,  Layer 5 to 4  Message = dW(V'U&)%S$R2Q!P~O}N
+
+Printing the contents of the Simulation Event Q
+Event Time = 111451.397 A: LAYER 5  
+
+
+Printing the contents of the Simulation Event Q
+Event Time = 111451.397 A: LAYER 5  
+Event Time = 112292.823 A: Timer    
+
+
+Printing the contents of the Simulation Event Q
+Event Time = 112292.823 A: Timer    
+
+A:  111451.3973,  Layer 5 to 4  Message = *fL.nP2r*6vX:z3>~aC%
+
+Printing the contents of the Simulation Event Q
+Event Time = 112852.840 A: LAYER 5  
+
+
+Printing the contents of the Simulation Event Q
+Event Time = 112317.324 B: LAYER 3  Seq/Ack/Check = 98/51286/1093394:  dW(V'U&)%S$R2Q!P~O}N
+Event Time = 112852.840 A: LAYER 5  
+Event Time = 113792.823 A: Timer    
+
+
+Printing the contents of the Simulation Event Q
+Event Time = 112852.840 A: LAYER 5  
+Event Time = 113792.823 A: Timer    
+
+B:  112317.3244,  Layer 4 to 5  Message = dW(V'U&)%S$R2Q!P~O}N
+A_input: unexpected ACK received
+B:  112340.2941,  Layer 4 to 5  Message = *fL.nP2r*6vX:z3>~aC%
+
+
+Simulator terminated at time 112349.183486
+ after receiving 100 msgs at layer5
+Simulator Analysis:
+  Number of messages sent from 5 to 4: 100
+  Number of messages received at Layer 5, side A: 0
+  Number of messages received at Layer 5, side B: 100
+  Number of messages incorrectly received at layer 5: 0
+  Number of packets entering the network: 345
+  Average number of packets already in network:     1.554
+  Number of packets that the network lost: 39
+  Number of packets that the network corrupted: 58
+  Number of packets that the network put out of order: 63
