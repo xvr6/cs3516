@@ -166,14 +166,14 @@ void A_input(struct pkt packet) {
     // Check for corruption
     int recSum = calculateChecksum(&packet);
     if (recSum != packet.checksum){
-        printf("A_input: corrupted ACK received\n");
+        DEBUG_PRINT("A_input: corrupted ACK received\n");
         resendPkt();
         return;
     }
 
     // Check for unwanted ACK
     if (!A_wait || packet.acknum != A_acknum) { 
-        printf("A_input: unexpected ACK received\n");
+        DEBUG_PRINT("A_input: unexpected ACK received\n");
         resendPkt();
         return;
     }
