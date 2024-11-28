@@ -6,5 +6,8 @@
 !*.pm
 !*.pl
 !Makefile
+!makefile
 !.gitignore
 !*.png
+!*.pdf
+/.vscode
