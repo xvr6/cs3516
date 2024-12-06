@@ -56,5 +56,5 @@ void                  toLayer2( struct RoutePacket packet );
 struct NeighborCosts *getNeighborCosts(int myNodeNumber);
 
 //NOTE: ___ for my helper functions
-void calculateMins(distance_table* dt, int* costs, int* mins);
+void calculateMins(distance_table* dt, int* mins);
 void printDT(distance_table* dt);

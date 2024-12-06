@@ -4,15 +4,16 @@
 #include "project3.h"
 
 extern int TraceLevel;
+extern float clocktime;
 
 distance_table dt3;
 NeighborCosts   *neighbor3;
 
 #define INDEX 3
 
-/* students to write the following two routines, and maybe some others */
+/* students to write the following two routines, and maybe some opthers */
 
-// initializes node 0.
+// initializes node
 void rtinit3() {
     if (TraceLevel == 2) printf("rtinit%d: initializing node %d...\n\n", INDEX, INDEX);
 
@@ -27,28 +28,20 @@ void rtinit3() {
     }
 
     // get neighbor costs
-    NeighborCosts* n = neighbor3;
-    n = getNeighborCosts(INDEX);
+    NeighborCosts* n = getNeighborCosts(INDEX);
 
-    int costs[MAX_NODES];
     for (int i = 0; i < n->NodesInNetwork; i++) {
         dt->costs[i][i] = n->NodeCosts[i];
-        costs[i] = n->NodeCosts[i];
     };
 
-    // print dt to ensure all is correct
     if (TraceLevel == 2) {
-        for (int i = 0; i < MAX_NODES; i++) {
-            for (int j = 0; j < MAX_NODES; j++) {
-                printf("%d ", dt->costs[i][j]);
-            }
-            printf("\n");
-        }
+        printf("Printing dt%d\n", INDEX);
+        printDT(dt);
     }
 
     // create each packet to send
     for (int p = 0; p < MAX_NODES; p++) {
-        if (p == INDEX) continue;  // ensures we aren't sending packet to self.
+        if (p == INDEX || n->NodeCosts[p] == INFINITY) continue;  // ensures we aren't sending packet to self.
 
         RoutePacket* pkt = malloc(sizeof(RoutePacket));
 
@@ -56,7 +49,7 @@ void rtinit3() {
         pkt->destid = p;
 
         int minimums[MAX_NODES];
-        calculateMins(dt, costs, minimums);
+        calculateMins(dt, minimums);
         for (int i = 0; i < MAX_NODES; i++) {
             pkt->mincost[i] = minimums[i];
         };
@@ -65,10 +58,49 @@ void rtinit3() {
     }
 }
 
-void rtupdate3( RoutePacket *rcvdpkt ) {
+// update values stored in node
+void rtupdate3(RoutePacket* rcvdpkt) {
+    // extrapolate for simpler calls
+    int from = rcvdpkt->sourceid;
+    int* rvccosts = rcvdpkt->mincost;
+    int hasUpdated = NO;
+    distance_table* dt = &dt3;
 
+    // compare values
+    for (int i = 0; i < MAX_NODES; i++) {
+        int curCost = dt->costs[from][from] + rvccosts[i];
+        int prevCost = dt->costs[i][from];
+        if (curCost < prevCost) {
+            dt->costs[i][from] = curCost;
+            hasUpdated = YES;
+        }
+    }
+
+    if (TraceLevel == 2) printf("rtupdate%d: called at t=%.3f by %d. Has updated: %d\n", INDEX, clocktime, from, hasUpdated);
+
+    if (!hasUpdated) return;
+    printf("At time t=%f, node %d current distance vector: %d %d %d %d\n", clocktime, INDEX, dt->costs[INDEX][0], dt->costs[INDEX][1], dt->costs[INDEX][2], dt->costs[INDEX][3]);
+
+    NeighborCosts* n = getNeighborCosts(INDEX);
+
+    //  create each packet to send
+    for (int p = 0; p < MAX_NODES; p++) {
+        if (p == INDEX || n->NodeCosts[p] == INFINITY) continue;  // ensures we aren't sending packet to self.
+
+        RoutePacket* pkt = malloc(sizeof(RoutePacket));
+
+        pkt->sourceid = INDEX;
+        pkt->destid = p;
+
+        int minimums[MAX_NODES];
+        calculateMins(dt, minimums);
+        for (int i = 0; i < MAX_NODES; i++) {
+            pkt->mincost[i] = minimums[i];
+        };
+
+        toLayer2(*pkt);
+    }
 }
-
 
 /////////////////////////////////////////////////////////////////////
 //  printdt
