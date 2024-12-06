@@ -15,10 +15,13 @@
 //  actually implement this many, but the structures allow for it.
 #define  MAX_NODES    4
 
+
 struct NeighborCosts   {
     int  NodesInNetwork;
     int  NodeCosts[MAX_NODES];
 };
+
+
 
 // a RoutePacket is the packet sent from one routing update process to
 // another via the call tolayer3()
@@ -30,14 +33,28 @@ struct RoutePacket {
    int mincost[MAX_NODES];     // min cost from node 0 ... N 
 };
 
+
+
 #define   YES           1
 #define   NO            0
 #define   INFINITY   9999
 
 #define   MAX_FILENAME_LENGTH  80
 
+//NOTE: moved the struct into this file to ensure i can import it into my helpers.c file.
+struct distance_table {
+    int costs[MAX_NODES][MAX_NODES];
+};
 
+// NOTE: added these lines for code compactness
+typedef struct NeighborCosts NeighborCosts;
+typedef struct RoutePacket RoutePacket;
+typedef struct distance_table distance_table;
 
 // Prototype so all nodes can see the routine in project3.c
 void                  toLayer2( struct RoutePacket packet );
 struct NeighborCosts *getNeighborCosts(int myNodeNumber);
+
+//NOTE: ___ for my helper functions
+void calculateMins(distance_table* dt, int* costs, int* mins);
+void printDT(distance_table* dt);

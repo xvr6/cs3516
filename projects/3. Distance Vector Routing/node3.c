@@ -1,22 +1,71 @@
 #include <stdio.h>
+#include <stdlib.h>
+
 #include "project3.h"
 
 extern int TraceLevel;
 
-struct distance_table {
-  int costs[MAX_NODES][MAX_NODES];
-};
-struct distance_table dt3;
-struct NeighborCosts   *neighbor3;
+distance_table dt3;
+NeighborCosts   *neighbor3;
+
+#define INDEX 3
 
 /* students to write the following two routines, and maybe some others */
 
+// initializes node 0.
 void rtinit3() {
+    if (TraceLevel == 2) printf("rtinit%d: initializing node %d...\n\n", INDEX, INDEX);
 
+    distance_table* dt = &dt3;
+
+    // initalize everything to infinity
+    for (int i = 0; i < MAX_NODES; i++) {
+        for (int j = 0; j < MAX_NODES; j++) {
+            dt->costs[i][j] = INFINITY;
+            // if(TraceLevel == 2) printf("rtinit%d: dt[%d,%d] = %d\n", INDEX, i, j, dt->costs[i][j]);
+        }
+    }
+
+    // get neighbor costs
+    NeighborCosts* n = neighbor3;
+    n = getNeighborCosts(INDEX);
+
+    int costs[MAX_NODES];
+    for (int i = 0; i < n->NodesInNetwork; i++) {
+        dt->costs[i][i] = n->NodeCosts[i];
+        costs[i] = n->NodeCosts[i];
+    };
+
+    // print dt to ensure all is correct
+    if (TraceLevel == 2) {
+        for (int i = 0; i < MAX_NODES; i++) {
+            for (int j = 0; j < MAX_NODES; j++) {
+                printf("%d ", dt->costs[i][j]);
+            }
+            printf("\n");
+        }
+    }
+
+    // create each packet to send
+    for (int p = 0; p < MAX_NODES; p++) {
+        if (p == INDEX) continue;  // ensures we aren't sending packet to self.
+
+        RoutePacket* pkt = malloc(sizeof(RoutePacket));
+
+        pkt->sourceid = INDEX;
+        pkt->destid = p;
+
+        int minimums[MAX_NODES];
+        calculateMins(dt, costs, minimums);
+        for (int i = 0; i < MAX_NODES; i++) {
+            pkt->mincost[i] = minimums[i];
+        };
+
+        toLayer2(*pkt);
+    }
 }
 
-
-void rtupdate3( struct RoutePacket *rcvdpkt ) {
+void rtupdate3( RoutePacket *rcvdpkt ) {
 
 }
 
@@ -28,17 +77,17 @@ void rtupdate3( struct RoutePacket *rcvdpkt ) {
 //  Required arguments:
 //  MyNodeNumber:  This routine assumes that you know your node
 //                 number and supply it when making this call.
-//  struct NeighborCosts *neighbor:  A pointer to the structure 
+//  NeighborCosts *neighbor:  A pointer to the structure 
 //                 that's supplied via a call to getNeighborCosts().
 //                 It tells this print routine the configuration
 //                 of nodes surrounding the node we're working on.
-//  struct distance_table *dtptr: This is the running record of the
+//  distance_table *dtptr: This is the running record of the
 //                 current costs as seen by this node.  It is 
 //                 constantly updated as the node gets new
 //                 messages from other nodes.
 /////////////////////////////////////////////////////////////////////
-void printdt3( int MyNodeNumber, struct NeighborCosts *neighbor, 
-		struct distance_table *dtptr ) {
+void printdt3( int MyNodeNumber, NeighborCosts *neighbor, 
+		distance_table *dtptr ) {
     int       i, j;
     int       TotalNodes = neighbor->NodesInNetwork;     // Total nodes in network
     int       NumberOfNeighbors = 0;                     // How many neighbors
