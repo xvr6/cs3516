@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "project3.h"
+#include <stdlib.h>
 
 extern int TraceLevel;
 
@@ -9,13 +10,64 @@ struct distance_table {
 struct distance_table dt0;
 struct NeighborCosts   *neighbor0;
 
-/* students to write the following two routines, and maybe some others */
+#define INDEX 0
 
+/* students to write the following two routines, and maybe some others */
+void calculateMins(struct distance_table *dt, int* costs, int* mins){    
+    for(int i = 0; i < MAX_NODES; i++){
+        int iMin = INFINITY;
+        for(int j = 0; j < MAX_NODES; j++){
+            int temp = dt->costs[i][j];
+            if(temp < iMin) iMin = temp;
+        }
+        mins[i] = iMin;
+    }
+}
+
+// initializes node 0.
 void rtinit0() {
+    struct distance_table* dt = &dt0;
+
+    // initalize everything to infinity
+    for(int i = 0; i < MAX_NODES; i++){
+        for(int j = 0; i < MAX_NODES; j++){
+            dt->costs[i][j] = INFINITY;
+        }
+    }
+
+    //get neighbor costs
+    struct NeighborCosts* n = neighbor0;
+    n = getNeighborCosts(INDEX);
+
+    int costs[MAX_NODES];
+    for(int i = 0; i < n->NodesInNetwork; i++){
+        dt->costs[i][i] = n->NodeCosts[i];
+        costs[i] = n->NodeCosts[i];
+    };
+
+
+    // create each packet to send
+    for(int p = 0; p < MAX_NODES; p++){
+        if (p == INDEX) continue; //ensures we aren't sending packet to self.
+
+        struct RoutePacket* pkt = malloc(sizeof(struct RoutePacket)); 
+        //
+        int* minimums[MAX_NODES];
+        calculateMins(dt, costs, minimums);
+
+        pkt->sourceid = INDEX;
+        pkt->destid = p;
+
+        for (int i = 0; i < MAX_NODES; i++) {
+            pkt->mincost[i] = minimums[i];
+        };
+
+        toLayer2(*pkt);
+    }
 
 }
 
-
+// update values stored in node 0
 void rtupdate0( struct RoutePacket *rcvdpkt ) {
 
 }
