@@ -23,15 +23,14 @@ void rtinit0() {
     for (int i = 0; i < MAX_NODES; i++) {
         for (int j = 0; j < MAX_NODES; j++) {
             dt->costs[i][j] = INFINITY;
-            // if(TraceLevel == 2) printf("rtinit%d: dt[%d,%d] = %d\n", INDEX, i, j, dt->costs[i][j]);
         }
     }
 
     // get neighbor costs
-    NeighborCosts* n = getNeighborCosts(INDEX);
+    neighbor0 = getNeighborCosts(INDEX);
 
-    for (int i = 0; i < n->NodesInNetwork; i++) {
-        dt->costs[i][i] = n->NodeCosts[i];
+    for (int i = 0; i < neighbor0->NodesInNetwork; i++) {
+        dt->costs[i][i] = neighbor0->NodeCosts[i];
     };
 
     if (TraceLevel == 2) {
@@ -39,9 +38,11 @@ void rtinit0() {
         printDT(dt);
     }
 
+    printdt0(INDEX, neighbor0, dt);
+
     // create each packet to send
     for (int p = 0; p < MAX_NODES; p++) {
-        if (p == INDEX || n->NodeCosts[p] == INFINITY) continue;   // ensures we aren't sending packet to self.
+        if (p == INDEX || neighbor0->NodeCosts[p] == INFINITY) continue;  // ensures we aren't sending packet to self.
 
         RoutePacket* pkt = malloc(sizeof(RoutePacket));
 
@@ -73,13 +74,14 @@ void rtupdate0(RoutePacket* rcvdpkt) {
         if (curCost < prevCost) {
             dt->costs[i][from] = curCost;
             hasUpdated = YES;
+            if (TraceLevel == 2) printf("rtupdate%d: dt[%d][%d] updated to %d\n", INDEX, i, from, curCost);
         }
     }
 
     if (TraceLevel == 2) printf("rtupdate%d: called at t=%.3f by %d. Has updated: %d\n", INDEX, clocktime, from, hasUpdated);
 
     if (!hasUpdated) return;
-    printf("At time t=%f, node %d current distance vector: %d %d %d %d\n", clocktime, INDEX, dt->costs[INDEX][0], dt->costs[INDEX][1], dt->costs[INDEX][2], dt->costs[INDEX][3]);
+    printCurrentDistanceVector0();
 
     NeighborCosts* n = getNeighborCosts(INDEX);
 
@@ -100,6 +102,15 @@ void rtupdate0(RoutePacket* rcvdpkt) {
 
         toLayer2(*pkt);
     }
+
+    if (TraceLevel == 2) printdt0(INDEX, neighbor0, dt);
+}
+
+// print current distance vector
+void printCurrentDistanceVector0() {
+    int minimums[MAX_NODES];
+    calculateMins(&dt0, minimums);
+    printf("At time t=%f, node %d current distance vector: %d %d %d %d\n", clocktime, INDEX, minimums[0], minimums[1], minimums[2], minimums[3]);
 }
 
 /////////////////////////////////////////////////////////////////////
